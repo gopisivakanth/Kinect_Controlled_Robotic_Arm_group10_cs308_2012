@@ -111,12 +111,12 @@ namespace SkeletonTracking
                 theta = poly.getTheta();
                 phi = poly.getPhi();
 
-                AxisAngles[1] = round((int)Mathematics.toDegrees(baseA));
+                AxisAngles[1] = round(180 - (int)Mathematics.toDegrees(baseA));
                 if (AxisAngles[1] > 270) AxisAngles[1] = 0;
-                AxisAngles[2] = round((int)Mathematics.toDegrees(horA + phi));
+                AxisAngles[2] = round(180-(int)Mathematics.toDegrees(horA + phi));
 
-                AxisAngles[3] = round((int)Mathematics.toDegrees(theta));
-                AxisAngles[4] = round((int)Mathematics.toDegrees(theta));
+                AxisAngles[3] = round((int)Mathematics.toDegrees(theta)+90);
+                AxisAngles[4] = round((int)Mathematics.toDegrees(theta)+90);
 
 
 
@@ -142,10 +142,12 @@ namespace SkeletonTracking
                 W.axis6.Content = AxisAngles[6].ToString();
                 */
                 W.axis1.Content = AxisAngles[1].ToString();//.Substring(0,4);
-                W.axis2.Content = Mathematics.toDegrees(horA).ToString().Substring(0, 4) + " : " + Mathematics.toDegrees(phi).ToString().Substring(0, 4) +
-                    " : " + hDist.ToString().Substring(0, 4);//.Substring(0, 4);
+                
                 Direction d = new Direction(first.Joints[JointType.ShoulderRight], first.Joints[JointType.HandRight]);
-                W.axis3.Content = d.x.ToString().Substring(0, 4) + " : " + d.y.ToString().Substring(0, 4) + " : " + d.z.ToString().Substring(0, 4);
+                W.axis2.Content = AxisAngles[2].ToString();// d.x.ToString().Substring(0, 4) + " : " + d.y.ToString().Substring(0, 4) + " : " + d.z.ToString().Substring(0, 4);
+          
+                W.axis3.Content = Mathematics.toDegrees(horA).ToString() + " : " + Mathematics.toDegrees(phi).ToString() +
+                    " : " + hDist.ToString();//.Substring(0, 4);
                 W.axis4.Content = AxisAngles[4].ToString();
                 W.axis5.Content = AxisAngles[5].ToString();
                 W.axis6.Content = AxisAngles[6].ToString();

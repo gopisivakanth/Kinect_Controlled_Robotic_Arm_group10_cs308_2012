@@ -137,20 +137,20 @@ namespace SkeletonTracking
             Plane p = new Plane(shl, sp, shr);
             Direction hand = new Direction(shr, handR);
             double distance = Math.Sqrt(Mathematics.norm(hand));
-            humanArmLength = Math.Max(humanArmLength, distance);
+            humanArmLength = 0.75;//Math.Max(humanArmLength, distance);
             double baseangle = Mathematics.angleBetweenLinesAndPlanes2pi(p, hand);
             Direction vertical = new Direction(0, 1, 0);
             double angle2 = Mathematics.angleBetweenLines2pi(hand, vertical);
-            if (angle2 > 180)
+            if (angle2 > Math.PI)
             {
-                angle2 = 360 - angle2;
+                angle2 = 2*Math.PI - angle2;
             }
-            if (angle2 > 90)
+            if (angle2 > Math.PI/2)
             {
-                angle2 = 90;
+                angle2 = Math.PI/2;
             }
             angle2 = Math.Abs(angle2);
-            angle2 = 90 - angle2;
+            angle2 = Math.PI/2 - angle2;
 
             baseAngle = baseangle;
             handDistance = (distance / humanArmLength) * RoboticArm.MaxLength;
